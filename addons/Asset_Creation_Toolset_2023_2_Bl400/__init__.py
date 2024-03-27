@@ -4,7 +4,7 @@ import importlib
 bl_info = {
 	"name": "Asset Creation Toolset",
 	"description": "Toolset for easy create assets for Unity/UE/Stocks/etc.",
-	"author": "Ivan 'mrven' Vostrikov,  Felipe Torrents, mokalux, Oxicid",
+	"author": "Ivan 'mrven' Vostrikov,  Felipe Torrents, mokalux, Oxicid, Guillem Domenech",
 	"wiki_url": "https://gum.co/hPXIh",
 	"tracker_url": "https://github.com/mrven/Blender-Asset-Creation-Toolset/issues",
 	"doc_url": "https://github.com/mrven/Blender-Asset-Creation-Toolset#readme",

@@ -112,6 +112,12 @@ class ACT_Addon_Props(bpy.types.PropertyGroup):
 		subtype='DIR_PATH'
 	)
 
+	append_collection_name: BoolProperty(
+		name="Append Collection Name",
+		description="Append selected object's collection name to the export path",
+		default=False
+	)
+
 	# Custom FBX Export Options
 	export_custom_options: BoolProperty(
 		name="Custom Export Options",

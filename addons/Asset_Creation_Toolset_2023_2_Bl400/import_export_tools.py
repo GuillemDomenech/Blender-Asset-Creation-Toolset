@@ -51,6 +51,9 @@ class Multi_FBX_Export(bpy.types.Operator):
 					return {'CANCELLED'}
 				else:
 					path = os.path.realpath(bpy.path.abspath(act.export_path)) + '/'
+					if act.append_collection_name:
+						path += bpy.context.active_object.users_collection[0].name + '/'
+
 
 			# Create export folder (if this need)
 			if not os.path.exists(path):
@@ -732,6 +735,10 @@ class VIEW3D_PT_Import_Export_Tools_Panel(bpy.types.Panel):
 					row = box.row(align=True)
 					row.label(text="Export Path:")
 					row.prop(act, "export_path")
+
+					row = box.row(align=True)
+					row.label(text="Append Collection Name")
+					row.prop(act, "append_collection_name", text="")
 
 				row = layout.row()
 				if act.export_format == 'FBX':
