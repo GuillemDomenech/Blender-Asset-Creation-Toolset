@@ -50,9 +50,26 @@ class Multi_FBX_Export(bpy.types.Operator):
 					self.report({'INFO'}, 'Directory for export not exist')
 					return {'CANCELLED'}
 				else:
-					path = os.path.realpath(bpy.path.abspath(act.export_path)) + '/'
+					path = os.path.realpath(bpy.path.abspath(act.export_path)) + '\\'
 					if act.append_collection_name:
-						path += bpy.context.active_object.users_collection[0].name + '/'
+
+						def get_parent_collection_names(collection, parent_names):
+							for parent_collection in bpy.data.collections:
+								if collection.name in parent_collection.children.keys():
+									parent_names.append(parent_collection.name)
+									get_parent_collection_names(parent_collection, parent_names)
+									return
+						
+						def turn_collection_hierarchy_into_path(obj):
+							parent_collection = obj.users_collection[0]
+							parent_names      = []
+							parent_names.append(parent_collection.name)
+							get_parent_collection_names(parent_collection, parent_names)
+							parent_names.reverse()
+							return '\\'.join(parent_names)
+							
+						path += turn_collection_hierarchy_into_path(bpy.context.active_object) + '\\'
+						print("Exporting to path: " + path)
 
 
 			# Create export folder (if this need)
